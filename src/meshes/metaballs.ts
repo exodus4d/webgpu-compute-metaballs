@@ -50,7 +50,7 @@ export class Metaballs {
     this.ubo = this.renderer.device.createBuffer({
       label: 'metaballs ubo',
       mappedAtCreation: true,
-      size: 5 * Float32Array.BYTES_PER_ELEMENT,
+      size: 8 * Float32Array.BYTES_PER_ELEMENT, // padding required for struct alignment: size % 8 == 0
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     })
     new Float32Array(this.ubo.getMappedRange()).set(

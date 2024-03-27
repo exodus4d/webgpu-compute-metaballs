@@ -80,9 +80,10 @@ export class WebGPURenderer {
     const viewUBOByteLength =
       16 * Float32Array.BYTES_PER_ELEMENT + // matrix
       16 * Float32Array.BYTES_PER_ELEMENT + // inverse matrix
-      4 * Float32Array.BYTES_PER_ELEMENT + // camera position
+      3 * Float32Array.BYTES_PER_ELEMENT + // camera position
       1 * Float32Array.BYTES_PER_ELEMENT + // time
-      1 * Float32Array.BYTES_PER_ELEMENT // delta time
+      1 * Float32Array.BYTES_PER_ELEMENT + // delta time
+      3 * Float32Array.BYTES_PER_ELEMENT // padding required for struct alignment: size % 8 == 0
 
     this.ubos.viewUBO = this.device.createBuffer({
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,

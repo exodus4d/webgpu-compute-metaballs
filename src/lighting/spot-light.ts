@@ -176,7 +176,8 @@ export class SpotLight {
         3 * Float32Array.BYTES_PER_ELEMENT + // color
         1 * Float32Array.BYTES_PER_ELEMENT + // cutOff
         1 * Float32Array.BYTES_PER_ELEMENT + // outerCutOff
-        1 * Float32Array.BYTES_PER_ELEMENT, // intensity,
+        1 * Float32Array.BYTES_PER_ELEMENT + // intensity,
+        2 * Float32Array.BYTES_PER_ELEMENT, // padding required for struct alignment: size % 8 == 0
     })
 
     this.projectionUBO = renderer.device.createBuffer({
@@ -224,7 +225,8 @@ export class SpotLight {
         16 * Float32Array.BYTES_PER_ELEMENT + // inverse matrix
         3 * Float32Array.BYTES_PER_ELEMENT + // camera position
         1 * Float32Array.BYTES_PER_ELEMENT + // time
-        1 * Float32Array.BYTES_PER_ELEMENT, // delta time
+        1 * Float32Array.BYTES_PER_ELEMENT + // delta time
+        3 * Float32Array.BYTES_PER_ELEMENT, // padding required for struct alignment: size % 8 == 0
     })
 
     this.renderer.device.queue.writeBuffer(
